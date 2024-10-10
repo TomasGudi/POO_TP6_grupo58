@@ -53,6 +53,12 @@ public class TarjetaCredito {
 	}
 
 	
+	public double getLimiteCompra() {
+		return limiteCompra;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "\nNumero: " + numero + " Fecha De Caducacion: " + fechaCaducacion + "\nNombre Titular: "
