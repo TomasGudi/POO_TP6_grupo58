@@ -10,7 +10,7 @@ public class Cuota {
 	 private LocalDate fechaVencimiento;
 
 	 public Cuota() {
-
+		 
 	 }
 
 	 public Cuota(double monto, int nroCuota, LocalDate fechaGeneracion, LocalDate fechaVencimiento) {
