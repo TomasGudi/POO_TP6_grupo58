@@ -8,10 +8,8 @@ import ar.edu.unju.escmi.tp6.collections.CollectionPromocionAhoraTreinta;
 
 public class PromocionAhoraTreinta {
 
-	// Fecha límite de la promoción
 	private static final LocalDate FECHA_LIMITE_PROMOCION = LocalDate.of(LocalDate.now().getYear(), 12, 22);
 
-	// Límites de precios
 	private static final double LIMITE_GENERAL = 1_500_000.0;
 	private static final double LIMITE_TELEFONO = 800_000.0;
 
@@ -23,7 +21,6 @@ public class PromocionAhoraTreinta {
 		double creditoDisponible = tarjetaCredito.getLimiteCompra();
 		double precio = stock.getProducto().getPrecioUnitario();
 
-		//filtros
 		if (hoy.isAfter(FECHA_LIMITE_PROMOCION)) {
 			System.out.println("Ya finalizo la promoción");
 			return;
@@ -55,7 +52,6 @@ public class PromocionAhoraTreinta {
 			return;
 		}
 
-		// registrar
 		nroFactura++;
 		Cliente cliente = tarjetaCredito.getCliente();
 		List<Detalle> detalles = new ArrayList<>();

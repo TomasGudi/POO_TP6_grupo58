@@ -14,7 +14,7 @@ public class CollectionPromocionAhoraTreinta {
 	    	try {
 	    		registro.add(credito);
 			} catch (Exception e) {
-				System.out.println("\nNO SE PUEDO REGISTRAR");
+				System.out.println("\nNO SE PUDO REGISTRAR");
 			}
 	    	
 	    }
