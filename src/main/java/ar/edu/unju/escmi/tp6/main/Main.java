@@ -49,8 +49,9 @@ public class Main {
 					 * System.out.print("Ingresa DNI del cliente: "); dniCliente =
 					 * scanner.nextLong(); System.out.print("Ingresa nombre del producto: "); String
 					 * nombreProducto = scanner.next(); sistema.realizarVenta(dniCliente,
-					 * nombreProducto); break;
+					 * nombreProducto); 
 					 */
+					break;
 				case 2:
 					System.out.print("Ingresa DNI del cliente: ");
 					dniCliente = scanner.nextLong();
