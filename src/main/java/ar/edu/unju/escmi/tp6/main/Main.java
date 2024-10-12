@@ -1,18 +1,25 @@
 package ar.edu.unju.escmi.tp6.main;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import ar.edu.unju.escmi.tp6.collections.CollectionCliente;
+import ar.edu.unju.escmi.tp6.collections.CollectionCredito;
 import ar.edu.unju.escmi.tp6.collections.CollectionFactura;
 import ar.edu.unju.escmi.tp6.collections.CollectionProducto;
 import ar.edu.unju.escmi.tp6.collections.CollectionStock;
 import ar.edu.unju.escmi.tp6.collections.CollectionTarjetaCredito;
 import ar.edu.unju.escmi.tp6.dominio.Cliente;
+import ar.edu.unju.escmi.tp6.dominio.Credito;
+import ar.edu.unju.escmi.tp6.dominio.Cuota;
+import ar.edu.unju.escmi.tp6.dominio.Detalle;
 import ar.edu.unju.escmi.tp6.dominio.Factura;
 import ar.edu.unju.escmi.tp6.dominio.Producto;
 import ar.edu.unju.escmi.tp6.dominio.Stock;
+import ar.edu.unju.escmi.tp6.dominio.TarjetaCredito;
 
 public class Main {
 
@@ -29,7 +36,7 @@ public class Main {
 			CollectionCliente.precargarClientes();
 			CollectionProducto.precargarProductos();
 			CollectionStock.precargarStocks();
-			long dniCliente;
+			long dniCliente, codProducto, nroTC;
 			int opcion = 0;
 			do {
 				System.out.println("\n====== Menu Principal =====");
@@ -45,21 +52,60 @@ public class Main {
 
 				switch (opcion) {
 				case 1:
-					/*
-					 * System.out.print("Ingresa DNI del cliente: "); dniCliente =
-					 * scanner.nextLong(); System.out.print("Ingresa nombre del producto: "); String
-					 * nombreProducto = scanner.next(); sistema.realizarVenta(dniCliente,
-					 * nombreProducto); 
-					 */
+			 		System.out.print("Ingrese el nro de su tarjeta de credito: "); 
+			 		nroTC = scanner.nextLong(); 
+			 		TarjetaCredito aux = CollectionTarjetaCredito.buscarTarjetaCredito(nroTC);
+			 		if (aux != null) {
+			 			boolean flag = false;
+			 			Random random = new Random();
+			 			List<Detalle> detalles = new ArrayList<Detalle>();
+			 			List<Cuota> cuotas = new ArrayList<Cuota>();
+			 			do {
+			 				System.out.print("Ingrese el codigo del producto: "); 
+			 				codProducto = scanner.nextLong(); 
+				 			Producto aux2 = CollectionProducto.buscarProducto(codProducto);
+				 			if (aux2 != null) {
+				 				System.out.print("Cuantos de este producto desea comprar?");
+				 				int cantidad = scanner.nextInt(); 
+				 				double importe = aux2.getPrecioUnitario(); 
+				 				Detalle det = new Detalle(cantidad,importe,aux2);
+				 				detalles.add(det);
+				 				Stock aux3 = CollectionStock.buscarStock(aux2);
+				 				CollectionStock.reducirStock(aux3, cantidad);
+				 				
+				 				System.out.println("Cuanto desea abonar");
+					 			double monto = scanner.nextDouble();
+					 			int numc = 1000 + random.nextInt(9000);
+					 			Cuota cuota = new Cuota(monto,numc,LocalDate.now(),LocalDate.now().plusMonths(1));
+					 			cuotas.add(cuota);
+				 			} else {
+				 				System.out.println("Producto: " + codProducto + " no encontrado.");
+				 			}
+				 			
+				 			System.out.print("Desea continuar comprando?");
+				 			System.out.print("Ingrese 0 para terminar su compra");
+			 				int fin = scanner.nextInt();
+				 			if(fin == 0) {
+				 				flag = true;
+				 			}
+			 			} while (!flag);
+			 	        int numt = 10000 + random.nextInt(90000);
+			 			Factura compra = new Factura(LocalDate.now(),numt,aux.getCliente(),detalles);
+			 			CollectionFactura.agregarFactura(compra);
+			 			Credito credito = new Credito(aux,compra,cuotas);
+			 			CollectionCredito.agregarCredito(credito);
+			 		} else {
+						System.out.println("Cliente con la Tarjeta" + nroTC + "no encontrado.");
+					}
 					break;
 				case 2:
 					System.out.print("Ingresa DNI del cliente: ");
 					dniCliente = scanner.nextLong();
-					Cliente aux = CollectionCliente.buscarCliente(dniCliente);
-					if (aux != null) {
-						List<Factura> compras = aux.consultarCompras();
+					Cliente aux1 = CollectionCliente.buscarCliente(dniCliente);
+					if (aux1 != null) {
+						List<Factura> compras = aux1.consultarCompras();
 						if (compras != null && !compras.isEmpty()) {
-							System.out.println("Compras realizadas por " + aux.getNombre() + ":");
+							System.out.println("Compras realizadas por " + aux1.getNombre() + ":");
 							for (Factura factura : compras) {
 								System.out.println(factura);
 							}
@@ -83,13 +129,18 @@ public class Main {
 					}
 					break;
 				case 5:
-					/*
-					 * System.out.print("Ingrese el DNI del cliente: "); String dni =
-					 * scanner.nextLine(); Cliente cliente =
-					 * sistemaCreditos.buscarClientePorDni(dni); if (cliente != null) {
-					 * sistemaCreditos.revisarCreditosCliente(cliente); } else {
-					 System.out.println("Cliente no encontrado."); } break; 
-					 */
+					System.out.print("Ingresa DNI del cliente: ");
+					dniCliente = scanner.nextLong();
+					Cliente aux4 = CollectionCliente.buscarCliente(dniCliente);
+					if (aux4 != null) {
+						for (Credito cre : CollectionCredito.creditos) {
+							if(cre.getTarjetaCredito().getCliente().getDni() == dniCliente) {
+								System.out.println(cre);
+							}
+						}
+					} else {
+						System.out.println("Cliente con DNI " + dniCliente + " no encontrado.");
+					}
 				case 6:
 					 System.out.println("Saliendo del sistema..."); 
 					 break; 
