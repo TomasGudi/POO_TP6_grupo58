@@ -2,70 +2,57 @@ package ar.edu.unju.escmi.tp6.dominio;
 
 public class Producto {
 
-	private long codigo;
+    private long codigo;
     private String descripcion;
     private double precioUnitario;
     private String origenFabricacion;
-    private int consumo;
 
     public Producto() {
-    	
+
     }
 
-	public long getCodigo() {
-		return codigo;
-	}
+    public Producto(long codigo, String descripcion, double precioUnitario, String origenFabricacion) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.precioUnitario = precioUnitario;
+        this.origenFabricacion = origenFabricacion;
+    }
 
-	public void setCodigo(long codigo) {
-		this.codigo = codigo;
-	}
+    public long getCodigo() {
+        return codigo;
+    }
 
-	public String getDescripcion() {
-		return descripcion;
-	}
+    public void setCodigo(long codigo) {
+        this.codigo = codigo;
+    }
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-	public double getPrecioUnitario() {
-		return precioUnitario;
-	}
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-	public void setPrecioUnitario(double precioUnitario) {
-		this.precioUnitario = precioUnitario;
-	}
+    public double getPrecioUnitario() {
+        return precioUnitario;
+    }
 
-	public String getOrigenFabricacion() {
-		return origenFabricacion;
-	}
+    public void setPrecioUnitario(double precioUnitario) {
+        this.precioUnitario = precioUnitario;
+    }
 
-	public void setOrigenFabricacion(String origenFabricacion) {
-		this.origenFabricacion = origenFabricacion;
-	}
+    public String getOrigenFabricacion() {
+        return origenFabricacion;
+    }
 
-	public int getConsumo() {
-		return consumo;
-	}
+    public void setOrigenFabricacion(String origenFabricacion) {
+        this.origenFabricacion = origenFabricacion;
+    }
 
-	public void setConsumo(int consumo) {
-		this.consumo = consumo;
-	}
+    public void mostrarProducto() {
+        System.out.println("\nCodigo: " + codigo);
+        System.out.println("Descripcion: " + descripcion);
+    }
 
-	@Override
-	public String toString() {
-		return "Producto [codigo=" + codigo + ", descripcion=" + descripcion + ", precioUnitario=" + precioUnitario
-				+ ", origenFabricacion=" + origenFabricacion + ", consumo=" + consumo + "]";
-	}
-
-	public Producto(long codigo, String descripcion, double precioUnitario, String origenFabricacion, int consumo) {
-		super();
-		this.codigo = codigo;
-		this.descripcion = descripcion;
-		this.precioUnitario = precioUnitario;
-		this.origenFabricacion = origenFabricacion;
-		this.consumo = consumo;
-	}
-
-   
 }

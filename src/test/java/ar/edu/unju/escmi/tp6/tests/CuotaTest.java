@@ -45,3 +45,4 @@ class CuotaTest {
 	        assertTrue(cuotas.size() <= 30, "La cantidad de cuotas no debe superar 30");
 	    }
 }
+
