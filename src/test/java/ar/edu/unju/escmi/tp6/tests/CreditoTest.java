@@ -19,7 +19,7 @@ class CreditoTest {
     @BeforeEach
     void setUp() {
     	Cliente cliente = new Cliente(45111222, "Mario Barca", "Alvear 120", "65454686");
-        Producto producto = new Producto(1111, "Aire Acondicionado Split On/Off 2750W FC Hisense", 220000, "Argentina");
+        Producto producto = new Producto(1111, "Aire Acondicionado Split On/Off 2750W FC Hisense", 220000, "Argentina", 0);
         List<Detalle> detalles = new ArrayList<Detalle>();
         detalles.add(new Detalle(12,10000,producto));
 
@@ -60,4 +60,5 @@ class CreditoTest {
 		assertTrue(montoTotal <= montoPermitido, "El monto total no debería superar el monto de 1.500.000");
 		assertTrue(montoTotal <= limiteTarjeta, "El monto total no debería superar el monto de la tarjeta");
 	}
+	
 }

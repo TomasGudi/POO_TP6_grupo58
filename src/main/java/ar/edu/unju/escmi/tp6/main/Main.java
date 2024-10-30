@@ -42,8 +42,9 @@ public class Main {
 
 				System.out.println("Ingrese su opcion: ");
 				opcion = scanner.nextInt();
-				if(LocalDate.now().equals(LocalDate.of(LocalDate.now().getYear(), 12, 22))) {
-	 				System.out.print("Fecha limite para la promocion alcanzada"); 
+				
+				if(LocalDate.now().isAfter(LocalDate.of(LocalDate.now().getYear(), 12, 22))) {
+	 				System.out.println("Fecha limite para la promocion alcanzada"); 
 	 				opcion = 6;
 				}
 				switch (opcion) {

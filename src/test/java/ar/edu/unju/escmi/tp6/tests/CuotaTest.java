@@ -2,7 +2,6 @@ package ar.edu.unju.escmi.tp6.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,4 +43,5 @@ class CuotaTest {
 	        List<Cuota> cuotas = credito.getCuotas();
 	        assertTrue(cuotas.size() <= 30, "La cantidad de cuotas no debe superar 30");
 	    }
+	    
 }
