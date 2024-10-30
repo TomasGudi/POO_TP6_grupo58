@@ -42,7 +42,10 @@ public class Main {
 
 				System.out.println("Ingrese su opcion: ");
 				opcion = scanner.nextInt();
-
+				if(LocalDate.now().equals(LocalDate.of(LocalDate.now().getYear(), 12, 22))) {
+	 				System.out.print("Fecha limite para la promocion alcanzada"); 
+	 				opcion = 6;
+				}
 				switch (opcion) {
 				case 1:
 			 		System.out.print("Ingrese el nro de su tarjeta de credito: "); 

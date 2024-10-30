@@ -11,7 +11,7 @@ class StockTest {
 	
 	@BeforeEach
     public void setUp() {
-        Producto producto = new Producto(1, "Heladera", 50000, "Argentina");
+        Producto producto = new Producto(1, "Heladera", 50000, "Argentina", 0);
         stock = new Stock(10, producto);
     }
 
