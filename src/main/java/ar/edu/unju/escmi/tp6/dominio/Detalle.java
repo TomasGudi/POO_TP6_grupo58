@@ -47,6 +47,6 @@ public class Detalle {
 
     @Override
     public String toString() {
-        return "PRODUCTO: " + producto + "\nCANTIDAD: " + cantidad + " | IMPORTE: " + importe + "\n";
+        return "PRODUCTO: " + producto.getDescripcion() + "\nCANTIDAD: " + cantidad + " | IMPORTE: " + importe + "\n";
     }
 }
