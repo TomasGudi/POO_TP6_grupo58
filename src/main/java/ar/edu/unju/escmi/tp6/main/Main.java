@@ -42,7 +42,10 @@ public class Main {
 
 				System.out.println("Ingrese su opcion: ");
 				opcion = scanner.nextInt();
-
+				if(LocalDate.now().isAfter(LocalDate.of(LocalDate.now().getYear(), 12, 22))) {
+	 				System.out.println("Fecha limite para la promocion alcanzada"); 
+	 				opcion = 6;
+				}
 				switch (opcion) {
 				case 1:
 			 		System.out.print("Ingrese el nro de su tarjeta de credito: "); 
@@ -142,6 +145,7 @@ public class Main {
 		 			    	System.out.println("Descripcion: " + producto.getDescripcion());
 						}
 					}
+					
 					break;
 				case 4:
 					for (Stock st : CollectionStock.stocks) {
